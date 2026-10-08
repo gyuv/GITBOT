@@ -21,6 +21,14 @@ cp .env.example .env   # fill APP_ID, WEBHOOK_SECRET, PRIVATE_KEY_PATH (and WEBH
 npm start
 ```
 
+## Deploy on Render
+1. On https://render.com, sign in with GitHub, then **New → Blueprint** and pick `gyuv/GITBOT`. It reads `render.yaml`.
+2. When prompted, fill `WEBHOOK_SECRET` (same as in the GitHub App) and `PRIVATE_KEY` (paste the whole `.pem` file, including the BEGIN/END lines).
+3. After deploy, copy the service URL (e.g. `https://gitbot-xxxx.onrender.com`) and set the GitHub App's **Webhook URL** to `https://gitbot-xxxx.onrender.com/api/github/webhooks`.
+4. Check `https://gitbot-xxxx.onrender.com/ping` returns `PONG`.
+
+The free plan sleeps after 15 minutes idle; the first webhook after a sleep may time out on GitHub's side (redeliver it from the App's **Advanced** tab), later ones are instant.
+
 ## GitHub App settings
 **Repository permissions**
 - Issues: **Read & write** (reactions, assignees, comments, labels, telemetry issue)

@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: gitbot
+    runtime: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /ping
+    envVars:
+      - key: APP_ID
+        value: "5235187"
+      - key: WEBHOOK_SECRET
+        sync: false # paste in the Render dashboard
+      - key: PRIVATE_KEY
+        sync: false # paste the full contents of the .pem file in the Render dashboard
+      - key: BOT_OWNER
+        value: gyuv
+      - key: BOT_OWNER_NAME
+        value: Yuvaraj
+      - key: NODE_ENV
+        value: production
+      - key: LOG_LEVEL
+        value: info
